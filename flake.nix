@@ -37,27 +37,6 @@
             enableGtk2 = false;
           })
 
-          stdenv.cc.cc.lib
-          gtk3
-          # zlib
-          libz
-          glib
-          fontconfig
-          freetype
-          libGL
-
-          ffmpeg
-          xorg.libXext
-          xorg.libXrender
-
-          xorg.libxcb
-          xorg.libX11
-          xorg.xcbutil
-          xorg.xcbutilwm
-          xorg.xcbutilimage
-          xorg.xcbutilkeysyms
-          xorg.xcbutilrenderutil
-
           ruff
           mpremote
           rshell

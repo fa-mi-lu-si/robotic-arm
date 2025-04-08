@@ -133,15 +133,15 @@ async def run_handtracking():
                 index_finger_tip = landmark_to_np(
                     hand_landmark[solutions.hands.HandLandmark.INDEX_FINGER_TIP]
                 )
+                wrist = landmark_to_np(
+                    hand_landmark[solutions.hands.HandLandmark.WRIST]
+                )
+                # middle_finger_mcp = landmark_to_np(
+                #     hand_landmark[solutions.hands.HandLandmark.MIDDLE_FINGER_MCP]
+                # )
                 thumb_tip = landmark_to_np(
                     hand_landmark[solutions.hands.HandLandmark.THUMB_TIP]
                 )
-                # pinky_mcp = landmark_to_np(
-                #     hand_landmarks.landmark[solutions.hands.HandLandmark.PINKY_MCP]
-                # )
-
-                # IMPORTANT : SWITCH TO CALCULATING THE SLOPE INSTEAD
-                # robot.top = int(angle_between(pinky_mcp, np.where(np.arange(3) == 2, 0, pinky_mcp)) / (1/2 * math.pi) * 65535)
 
                 robot.hand = {
                     False: int(1 / 4 * 65535),
@@ -177,7 +177,7 @@ async def main():
     # TODO: make the handtracking not crash when the pico is disconnected
     # move the BleakClient contextmanager inside the sending_task()
     # also mive the find_device() stuff into the sending_task so we don't
-    
+
     pico_device = await find_device()
     if not pico_device:
         return
