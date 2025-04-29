@@ -27,8 +27,6 @@ led = Pin("LED",Pin.OUT)
 # top : full
 # hand : 1670 - 2500 (close - open)
 
-knob = ADC(Pin("GP28", Pin.PULL_UP))
-
 def analog_to_pwm_duty_cycle(analog_value,  pulse_min=500, pulse_max=2500, pwm_frequency=50):
     period = 1_000_000 / pwm_frequency  # Converts Hz to microseconds
     
@@ -66,9 +64,6 @@ def on_rx(value):
 bt.on_write(on_rx)
 
 while True:
-    knob_val = knob.read_u16()
-    # hand.duty_u16(analog_to_pwm_duty_cycle(knob_val))
-    # print(knob_val)
     if bt.is_connected():
         led.on()
     else:
